@@ -1,11 +1,20 @@
 <?php
 
-use function Livewire\Volt\{state};
+use function Livewire\Volt\{state, with};
 
 state(['task']);
 
+with([
+    'todos' => fn() => \App\Models\Todo::all()
+]);
+
 $add = function () {
-    $this->reset('task');
+    \App\Models\Todo::create([
+        'user_id' => auth()->id(),
+        'task' => $this->task
+    ]);
+
+    $this->task = '';
 };
 
 ?>
@@ -24,7 +33,11 @@ $add = function () {
     </form>
 
     <div class="mt-2">
-        {{ $task }}
+        @foreach ($todos as $todo)
+            <div>
+                {{ $todo->task }}
+            </div>
+        @endforeach
     </div>
 
 </div>
