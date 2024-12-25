@@ -5,7 +5,8 @@ use function Livewire\Volt\{state};
 state(['task']);
 
 $add = function () {
-
+    $this->task = '';
+    // $this->reset('task');
 };
 
 ?>
@@ -16,7 +17,7 @@ $add = function () {
         <input type="text" wire:model="task">
 
         <button
-            type="button"
+            type="submit"
             class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
         >
             Add
