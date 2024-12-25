@@ -2,6 +2,8 @@
 
 use function Livewire\Volt\{state, with};
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TodoCreated;
 use App\Models\Todo;
 
 state(['task']);
@@ -11,9 +13,12 @@ with([
 ]);
 
 $add = function () {
-    auth()->user()->todos()->create([
+    $todo =auth()->user()->todos()->create([
         'task' => $this->task
     ]);
+
+    Mail::to(auth()->user())
+        ->send(new TodoCreated($todo));
 
     $this->task = '';
 };
