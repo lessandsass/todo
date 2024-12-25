@@ -5,7 +5,7 @@ use function Livewire\Volt\{state, with};
 state(['task']);
 
 with([
-    'todos' => fn() => \App\Models\Todo::all()
+    'todos' => fn() => auth()->user()->todos
 ]);
 
 $add = function () {
