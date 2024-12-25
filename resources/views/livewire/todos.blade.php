@@ -2,6 +2,8 @@
 
 use function Livewire\Volt\{state, with};
 
+use App\Models\Todo;
+
 state(['task']);
 
 with([
@@ -15,6 +17,8 @@ $add = function () {
 
     $this->task = '';
 };
+
+$delete = fn(Todo $todo) => $todo->delete();
 
 ?>
 
@@ -35,6 +39,13 @@ $add = function () {
         @foreach ($todos as $todo)
             <div>
                 {{ $todo->task }}
+
+                <button
+                    wire:click="delete({{ $todo->id }})"
+                    class="text-red-600 hover:underline"
+                >
+                    Delete
+                </button>
             </div>
         @endforeach
     </div>
