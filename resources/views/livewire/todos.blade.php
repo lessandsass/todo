@@ -9,8 +9,7 @@ with([
 ]);
 
 $add = function () {
-    \App\Models\Todo::create([
-        'user_id' => auth()->id(),
+    auth()->user()->todos()->create([
         'task' => $this->task
     ]);
 
