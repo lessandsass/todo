@@ -5,8 +5,7 @@ use function Livewire\Volt\{state};
 state(['task']);
 
 $add = function () {
-    $this->task = '';
-    // $this->reset('task');
+    $this->reset('task');
 };
 
 ?>
